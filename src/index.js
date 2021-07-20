@@ -13,15 +13,17 @@ input.addEventListener('input', searchCountryForName);
 
 
 
-startRenderingCountry()
+// startRenderingCountry()
 // console.log(`return promise`, startRenderingCountry())
+
 function renderringCountryAfterSearch(country) {
     console.log(`rer`, country);
 
     const markup = countryItem(country);
     const markupText = countryOption(country);
-    countryList.insertAdjacentHTML('beforeend', markup)
-    countryInfo.insertAdjacentHTML('beforeend', markupText)
+   
+    countryList.innerHTML = markup;
+    countryInfo.innerHTML = markupText;
 }
 function errorCountry(error) {
     console.log(error)
@@ -32,6 +34,7 @@ function fetchCountry(search) {
     console.log(`tadam`, search)
     if (!search) {
         console.log('ddddh')
+        
         return
     }
     return fetch(`https://restcountries.eu/rest/v2/name/${search}`).then(response => {
@@ -45,10 +48,12 @@ console.log(`return promise`, fetchCountry())
 // fetchCountry().then(renderringCountryAfterSearch);
 
 function searchCountryForName(evt) {
-    if (evt.currentTarget.value) {
+    if (!evt.currentTarget.value) {
         console.log('end')
-        // const arr = document.querySelectorAll('.list-group-item');
-        // arr.textContent = "";
+       countryList.innerHTML = '';
+    countryInfo.innerHTML = '';
+        return
+        
     }
     const currentSearch = evt.currentTarget.value;
 
