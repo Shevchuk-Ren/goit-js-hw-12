@@ -9,46 +9,50 @@ const countryInfo = document.querySelector('.country-info')
 const input = document.getElementById('search-box');
 console.log(input)
 
-
 input.addEventListener('input', searchCountryForName);
 
-// const fetchCountries = fetch('https://restcountries.eu/rest/v2/name/Col').then(response => {
-//     // console.log(response.json());
-//     return response.json();
-// }).then(country => {
-//     console.log(country);
-//     const markup = countryItem(country);
-//     countryList.insertAdjacentHTML('beforeend', markup)
-//     console.log(markup)
-// }).catch();
-function startRenderingCountry() {
-    // console.log(searchCountryForName())
-    const a = 'col';
-    console.log(a)
-    const fetchCountries = fetch(`https://restcountries.eu/rest/v2/name/${a}`).then(response => {
-        console.log(fetchCountries);
-        return response.json();
-    }).then(country => {
-        console.log(`rer`, country);
-        const markup = countryItem(country);
-        const markupText = countryOption(country);
-        countryList.insertAdjacentHTML('beforeend', markup)
-        countryInfo.insertAdjacentHTML('beforeend', markupText)
-        console.log()
-    }).catch();
-}
+
+
 startRenderingCountry()
-function accessCountry() {
+// console.log(`return promise`, startRenderingCountry())
+function renderringCountryAfterSearch(country) {
+    console.log(`rer`, country);
 
+    const markup = countryItem(country);
+    const markupText = countryOption(country);
+    countryList.insertAdjacentHTML('beforeend', markup)
+    countryInfo.insertAdjacentHTML('beforeend', markupText)
+}
+function errorCountry(error) {
+    console.log(error)
 }
 
-function searchCountryForName(evt) {
-    if (evt.currentTarget.value.trim('') === '') {
-        console.log('h')
+function fetchCountry(search) {
+
+    console.log(`tadam`, search)
+    if (!search) {
+        console.log('ddddh')
         return
     }
-    const currentSearch = evt.currentTarget.value;
-    console.log(`hh`, currentSearch.trim(''))
-    return currentSearch;
+    return fetch(`https://restcountries.eu/rest/v2/name/${search}`).then(response => {
+
+        return response.json();
+    })
 }
-// console.log(`dd`, currentSearch())
+
+
+console.log(`return promise`, fetchCountry())
+// fetchCountry().then(renderringCountryAfterSearch);
+
+function searchCountryForName(evt) {
+    if (evt.currentTarget.value) {
+        console.log('end')
+        // const arr = document.querySelectorAll('.list-group-item');
+        // arr.textContent = "";
+    }
+    const currentSearch = evt.currentTarget.value;
+
+    fetchCountry(currentSearch).then(renderringCountryAfterSearch);
+
+
+}
