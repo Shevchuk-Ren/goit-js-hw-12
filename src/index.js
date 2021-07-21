@@ -13,22 +13,26 @@ refs.input.addEventListener('input', searchCountryForName);
 
  //отрисовка если операция успешна
 function renderringCountryAfterSearch(country) {
+
+    const markup = countryItem(country);
+     const markupText = countryOption(country);
+
     console.log(`omg`, country.length);
     if (country.length > 10) {
          return Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
     } else if (country.length === 1) {
-        const markupText = countryOption(country);
+        // const markupText = countryOption(country);
         refs.countryList.innerHTML = '';
     refs.countryInfo.innerHTML = markupText;
         return;
     } else {
-         const markup = countryItem(country);
+        //  const markup = countryItem(country);
     // const markupText = countryOption(country);
    
     refs.countryList.innerHTML = markup;
     refs.countryInfo.innerHTML = '';
    }
-    const markup = countryItem(country);
+    // const markup = countryItem(country);
     // const markupText = countryOption(country);
    
     refs.countryList.innerHTML = markup;
