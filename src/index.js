@@ -11,26 +11,38 @@ const refs = getRefs();
 
 refs.input.addEventListener('input', searchCountryForName);
 
+ //отрисовка если операция успешна
 function renderringCountryAfterSearch(country) {
     console.log(`omg`, country.length);
     if (country.length > 10) {
          return Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
-        
+    } else if (country.length === 1) {
+        const markupText = countryOption(country);
+        refs.countryList.innerHTML = '';
+    refs.countryInfo.innerHTML = markupText;
         return;
-   }
-    const markup = countryItem(country);
-    const markupText = countryOption(country);
+    } else {
+         const markup = countryItem(country);
+    // const markupText = countryOption(country);
    
     refs.countryList.innerHTML = markup;
-    refs.countryInfo.innerHTML = markupText;
+    refs.countryInfo.innerHTML = '';
+   }
+    const markup = countryItem(country);
+    // const markupText = countryOption(country);
+   
+    refs.countryList.innerHTML = markup;
+    refs.countryInfo.innerHTML = '';
+    // refs.countryInfo.innerHTML = markupText;
 }
+//ошибка
 function errorCountry(error) {
     console.log(`ошибка`, error)
     
     return Notiflix.Notify.failure('Oops, there is no country with that name.');
-    
 }
 
+//действие с инпутом
 function searchCountryForName(evt) {
     if (!evt.currentTarget.value) {
         console.log('end')
