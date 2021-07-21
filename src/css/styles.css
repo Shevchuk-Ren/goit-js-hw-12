@@ -15,12 +15,12 @@ body {
   display: block;
   font: inherit;
   padding: 8px;
-  max-width: 300px;
+
+  min-width: 300px;
   margin-bottom: 16px;
-  width: 320px;
 }
+
 #search-box:focus {
-  /* border: 3px solid blue; */
   box-shadow: 1px 1px 2px 0 #444;
   outline: none;
 }
@@ -75,5 +75,5 @@ ul.info,
 }
 .country-list {
   /* width: fit-content; */
-  min-width: 300px;
+  max-width: 300px;
 }
