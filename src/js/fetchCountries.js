@@ -1,11 +1,10 @@
 const URL_BASE = `https://restcountries.eu/rest/v2/name`;
 
 function fetchCountry(search) {
-
-    console.log(`tadam`, search)
+    const CHARACTERISTICS = 'fields=name;population;flag;languages;capital';
  
-    return fetch(`${URL_BASE}/${search}`).then(response => {
-        console.log(response)
+    return fetch(`${URL_BASE}/${search}?${CHARACTERISTICS}`).then(response => {
+       
         if (response.ok) {
             return response.json(); 
         }
