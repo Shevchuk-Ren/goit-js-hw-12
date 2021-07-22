@@ -102,7 +102,7 @@ class Search {
    }
 
      //отрисовка если операция успешна
- renderringCountryAfterSearch(country) {
+    renderringCountryAfterSearch(country) {
 
     const markup = countryItem(country);
     const markupCard = countryOption(country);
