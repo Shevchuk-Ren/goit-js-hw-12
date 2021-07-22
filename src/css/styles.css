@@ -26,12 +26,7 @@ body {
 }
 @media screen and (max-width: 377px) {
   #search-box {
-    display: block;
-    font: inherit;
-    padding: 8px;
-
     min-width: 100%;
-    margin-bottom: 16px;
   }
 }
 img {
@@ -82,6 +77,11 @@ ul.info,
   min-width: 300px;
   background-color: white;
   box-shadow: 0 0 1px #444;
+}
+@media screen and (max-width: 377px) {
+  .listcountry-item {
+    min-width: 100%;
+  }
 }
 .country-list {
   /* width: fit-content; */
